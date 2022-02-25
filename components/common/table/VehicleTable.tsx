@@ -51,7 +51,7 @@ const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemCli
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.date}
+                    {new Date(row.date).toDateString()}
                   </TableCell>
                   <TableCell align="right">{row.expense}</TableCell>
                   <TableCell align="right">{row.amount}</TableCell>

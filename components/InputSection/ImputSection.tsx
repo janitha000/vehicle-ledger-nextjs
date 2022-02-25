@@ -40,7 +40,15 @@ const InputSection = () => {
     };
 
     await SaveVehicleData(payload);
+    resetFields();
   };
+
+  const resetFields = () => {
+    expense.setvalue("");
+    amount.setvalue(0)
+    odMeter.setvalue(0);
+    usageValue.current = 0;
+  }
 
   const SaveVehicleData = async (payload : any) => {
     const requestOptions = {
