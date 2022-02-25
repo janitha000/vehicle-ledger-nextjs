@@ -8,7 +8,8 @@ interface Props {
     onDateSelect: (val :Date | null) => void;
 }
 const VCalendar: React.FC<Props> = ({ onDateSelect }) => {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(new Date());
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -16,7 +17,7 @@ const VCalendar: React.FC<Props> = ({ onDateSelect }) => {
         label="Date"
         value={value}
         onChange={(newValue) => {
-          setValue(newValue);
+          setValue(newValue!);
           onDateSelect(newValue);
         }}
         renderInput={(params) => <TextField {...params} />}

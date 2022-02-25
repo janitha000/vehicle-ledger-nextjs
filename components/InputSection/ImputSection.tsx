@@ -26,7 +26,10 @@ const InputSection = () => {
   }, [odMeter, vehicleItems]);
 
   const onAdd = async () => {
-    if (date.toDateString() == null || expense.value == null || usageValue.current < 0) return;
+      console.log(expense.value)
+      debugger;
+    if ((selectedVehicle as Vehicle).id === undefined || date.toDateString() == null || expense.value == "" || usageValue.current < 0) return;
+
     const payload = {
       vehicle_id: (selectedVehicle as VehicleData).id,
       date: date.toISOString(),
