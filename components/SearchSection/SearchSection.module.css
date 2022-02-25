@@ -1,0 +1,18 @@
+.searchSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.searchSection > div {
+  min-width: 200px;
+}
+
+.searchVehicle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
