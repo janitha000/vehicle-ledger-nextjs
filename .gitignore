@@ -37,3 +37,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 util/db/serviceAccountKey.json
+public/sw.js
+public/sw.js.map
+public/workbox-*.js.map
+public/worker-*.js.map
+public/workbox-f8f28168.js
