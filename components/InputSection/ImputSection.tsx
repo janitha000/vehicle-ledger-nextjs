@@ -62,12 +62,16 @@ const InputSection = () => {
   };
   const onDateSelect = (pickedDate : Date | null) => {
     setDate(pickedDate!);
+    dispatch({ type: "setYear", payload: pickedDate?.getFullYear() });
+    dispatch({ type: "setMonth", payload: pickedDate?.getMonth() });
   };
 
   return (
     <div className={styles.input_section}>
-      <VCalendar onDateSelect={onDateSelect} />
+        <div style={{"border": "red 2px solid", "padding" : "0.5rem"}}>
+        <VCalendar onDateSelect={onDateSelect}/>
 
+        </div>
       <TextField
         required
         id="outlined-required"

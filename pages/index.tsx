@@ -40,9 +40,9 @@ const Home: NextPage<Props> = ({defaultVehicle}) => {
         <div className={styles.home_input}>
         <InputSection />
       </div>
-        <div className={styles.homemonthinput}>
+        {/* <div className={styles.homemonthinput}>
         <MonthInput />
-      </div>
+      </div> */}
       <div className={styles.table}>
       <TableSection />
 

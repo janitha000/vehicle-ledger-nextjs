@@ -72,6 +72,9 @@ const AddVehicleData = async (vehicle: InsertVehicleBody, vehicleId: string): Pr
         await db.collection(`vehicles`).doc(vehicleId).collection('vehicledata').doc(lessRecord!.id)
             .update({ usage: lessRecord!.od_meter - vehicle.od_meter });
     }
+    else if (vehicleData.length === 0) {
+        vehicle.usage = 0;
+    }
     // else if (vehicle.usage === 0 && vehicleData.length === 0) {
     //     if (parseInt(month) === 0) year = (parseInt(year) - 1).toString();
 

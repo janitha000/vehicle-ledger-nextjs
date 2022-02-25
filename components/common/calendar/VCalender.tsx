@@ -12,7 +12,7 @@ const VCalendar: React.FC<Props> = ({ onDateSelect }) => {
 
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+<LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label="Date"
         value={value}
@@ -23,6 +23,7 @@ const VCalendar: React.FC<Props> = ({ onDateSelect }) => {
         renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>
+    
   );
 }
 
