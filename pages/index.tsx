@@ -1,6 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useContext, useEffect } from 'react'
+import AverageCard from '../components/AverageCard/AverageCard'
 import Footer from '../components/common/footer/footer'
 import InputSection from '../components/InputSection/ImputSection'
 import MonthInput from '../components/MonthInput/MonthInput'
@@ -9,7 +10,6 @@ import TableSection from '../components/TableSection/TableSection'
 import { VechicleDispatchContext } from '../context/VehicleContext'
 import { Vehicle } from '../models/Vehicle'
 import styles from '../styles/Home.module.css'
-import { API_URL } from '../util/constants'
 
 interface Props {
   defaultVehicle: Vehicle
@@ -34,6 +34,9 @@ const Home: NextPage<Props> = ({defaultVehicle}) => {
         <div className={styles.homeSearch}>
         <SearchSection />
         </div>
+        <div className={styles.home_average_card}>
+        <AverageCard />
+      </div>
         <div className={styles.home_input}>
         <InputSection />
       </div>
@@ -48,16 +51,16 @@ const Home: NextPage<Props> = ({defaultVehicle}) => {
   )
 }
 
-export const  getStaticProps : GetStaticProps = async (context)  => {
-  const data= await fetch(`${API_URL}/vehicles`);
-  const res = await data.json();
-  const defaultVehicle : Vehicle = res[0];
+// export const  getStaticProps : GetStaticProps = async (context)  => {
+//   const data= await fetch(`${API_URL}/vehicles`);
+//   const res = await data.json();
+//   const defaultVehicle : Vehicle = res[0];
 
-  return {
-    props: {
-      defaultVehicle
-    }, 
-  }
-}
+//   return {
+//     props: {
+//       defaultVehicle
+//     }, 
+//   }
+// }
 
 export default Home

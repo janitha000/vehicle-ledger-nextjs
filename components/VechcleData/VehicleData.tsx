@@ -6,7 +6,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {  VechicleDispatchContext, VechicleStateContext } from '../../context/VehicleContext';
-import { API_URL } from '../../util/constants';
 import { Vehicle } from '../../models/Vehicle';
 
 interface VehicleDataProps {
@@ -18,7 +17,7 @@ const VechicleDataC : React.FC<VehicleDataProps> = ({ isOpen, reRender }) => {
     const { dispatch } = React.useContext(VechicleDispatchContext);
 
     const onDelete = async () => {
-        await fetch(`${API_URL}/vehicles/${(selectedVehicle as Vehicle)?.id}`, { method: 'DELETE' });
+        await fetch(`api/vehicles/${(selectedVehicle as Vehicle)?.id}`, { method: 'DELETE' });
         window.location.reload();
     }
 

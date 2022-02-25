@@ -32,7 +32,7 @@ const InputSection = () => {
       vehicle_id: (selectedVehicle as VehicleData).id,
       date: date.toISOString(),
       expense: expense.value,
-      amount: amount.value ?? 0,
+      amount: parseInt(amount.value) ?? 0,
       od_meter: parseInt(odMeter.value),
       usage: usageValue.current,
     };

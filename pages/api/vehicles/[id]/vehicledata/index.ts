@@ -7,6 +7,7 @@ interface InsertVehicleBody {
     date: Date;
     id: string;
     od_meter: number;
+    usage: number;
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -56,11 +57,9 @@ const GetVehicleData = async (id: string, month: string, year: string) => {
 }
 
 const AddVehicleData = async (vehicle: InsertVehicleBody, vehicleId: string): Promise<string> => {
-    const month = new Date(vehicle.date).getMonth().toString();
-    const year = new Date(vehicle.date).getFullYear().toString();;
+    let month = new Date(vehicle.date).getMonth().toString();
+    let year = new Date(vehicle.date).getFullYear().toString();;
     const vehicleData = await GetVehicleData(vehicleId, month, year);
-    console.log(new Date(vehicleData[0].date))
-    console.log(vehicle.date)
     if (vehicleData.length > 0 && new Date(vehicleData[0].date) > new Date(vehicle.date)) {
         let lessRecord = vehicleData.filter(x => new Date(x.date) > new Date(vehicle.date)).pop() as VehicleData;
         console.log(vehicleData)
@@ -69,6 +68,12 @@ const AddVehicleData = async (vehicle: InsertVehicleBody, vehicleId: string): Pr
         await db.collection(`vehicles`).doc(vehicleId).collection('vehicledata').doc(lessRecord!.id)
             .update({ usage: lessRecord!.od_meter - vehicle.od_meter });
     }
+    // else if (vehicle.usage === 0 && vehicleData.length === 0) {
+    //     if (parseInt(month) === 0) year = (parseInt(year) - 1).toString();
+
+    //     let vehicleData = await GetVehicleData(vehicleId, month, year);
+
+    // }
 
     const { id } = await db.collection(`vehicles`).doc(vehicleId).collection('vehicledata').add({
         ...vehicle,
