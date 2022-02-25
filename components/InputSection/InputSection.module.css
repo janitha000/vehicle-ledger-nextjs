@@ -4,3 +4,14 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
+@media (max-width: 768px) {
+  .input_section {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}

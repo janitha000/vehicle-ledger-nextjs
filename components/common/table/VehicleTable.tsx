@@ -30,7 +30,7 @@ const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemCli
     <>
       <TableContainer component={Paper}>
         <Table
-          sx={{ minWidth: 1000, maxWidth: 1000 }}
+          
           aria-label="simple table"
         >
           <TableHead>

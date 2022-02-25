@@ -43,7 +43,10 @@ const Home: NextPage<Props> = ({defaultVehicle}) => {
         <div className={styles.homemonthinput}>
         <MonthInput />
       </div>
+      <div className={styles.table}>
       <TableSection />
+
+      </div>
       </main>
 
       <Footer />

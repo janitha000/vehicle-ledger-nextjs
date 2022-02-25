@@ -22,3 +22,7 @@
 .homeSearch {
   margin: 2rem;
 }
+
+.table {
+  max-width: 80%;
+}
