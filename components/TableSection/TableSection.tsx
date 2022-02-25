@@ -1,6 +1,6 @@
 import id from "date-fns/locale/id";
 import * as React from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { VechicleDispatchContext, VechicleStateContext } from "../../context/VehicleContext";
 import { VehicleData } from "../../models/VehicleData";
 import fetcher from "../../util/fetcher";
@@ -13,6 +13,7 @@ const TableSection = () => {
 
   React.useEffect(() => {
     dispatch({ type: "setVehicleItems", payload: data });
+    console.log('dispatch vehicles')
   }, [data]);
 
 
@@ -31,9 +32,9 @@ const TableSection = () => {
 
   const deleteItem = React.useCallback(async (item) => {
     console.log(item);
-    await fetch(`api/vehicledata/${item.id}?vehicleId=${(selectedVehicle as VehicleData).id}&month=${inputMonth}&year=${inputYear}`, { method: 'DELETE' });
+    await fetch(`api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata/${item.id}?month=${inputMonth}&year=${inputYear}`, { method: 'DELETE' });
+    mutate(`api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata?month=${inputMonth}&year=${inputYear}`, )
     dispatch({ type: "deleteVehicleData", payload: item.id });
-    dispatch({ type: "recallApi", payload: null });
   }, [selectedVehicle, inputMonth, inputYear]);
 
   return (

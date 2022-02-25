@@ -1,0 +1,6 @@
+.input_section {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
