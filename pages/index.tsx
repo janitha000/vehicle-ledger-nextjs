@@ -2,7 +2,9 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useContext, useEffect } from 'react'
 import Footer from '../components/common/footer/footer'
+import MonthInput from '../components/MonthInput/MonthInput'
 import SearchSection from '../components/SearchSection/SearchSection'
+import TableSection from '../components/TableSection/TableSection'
 import { VechicleDispatchContext } from '../context/VehicleContext'
 import { Vehicle } from '../models/Vehicle'
 import styles from '../styles/Home.module.css'
@@ -30,8 +32,11 @@ const Home: NextPage<Props> = ({defaultVehicle}) => {
       <main className={styles.home}>
         <div className={styles.homeSearch}>
         <SearchSection />
-
         </div>
+        <div className={styles.homemonthinput}>
+        <MonthInput />
+      </div>
+      <TableSection />
       </main>
 
       <Footer />

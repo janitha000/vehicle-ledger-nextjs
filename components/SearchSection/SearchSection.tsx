@@ -16,7 +16,7 @@ import VechicleDataC from "../VechcleData/VehicleData";
 
 
 const SearchSection: React.FC = () => {
-  const { data, error } = useSWR<Vehicle[]>(`${API_URL}/vehicles`, fetcher);
+  const { data, error } = useSWR<Vehicle[]>(`api/vehicles`, fetcher);
 
   const { dispatch } = useContext(VechicleDispatchContext);
   const [vehicle, setVehicle] = useState("");

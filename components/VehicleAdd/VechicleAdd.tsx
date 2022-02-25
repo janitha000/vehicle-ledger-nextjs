@@ -28,7 +28,7 @@ const VehicleAdd = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     };
-    const response = await fetch(`${API_URL}/vehicles`, requestOptions);
+    const response = await fetch(`api/vehicles`, requestOptions);
     setRedirect(true)
   };
 
