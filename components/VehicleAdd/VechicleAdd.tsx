@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { API_URL } from "../../util/constants";
 import useInput from "../../hooks/UseInput";
 import { Vehicle } from "../../models/Vehicle";
 import { useRouter } from "next/router";

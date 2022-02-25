@@ -7,12 +7,10 @@ const AverageCard = () => {
   const { state: { vehicleItems }, } = React.useContext(VechicleStateContext);
   const averages = React.useMemo(() => {
     if (vehicleItems && vehicleItems.length > 0) {
-        console.log(vehicleItems)
-      const totalCost = vehicleItems.reduce(
-        (a, b) => a + (b.amount) ? b.amount : 0,
-        0
-      );
+        
       const totalKm = vehicleItems.reduce((a, b) => a + b.usage, 0);
+      const totalCost = vehicleItems.map(x => x.amount).reduce((a,b) => a + b,0);
+
       console.log(totalCost)
       console.log(totalKm)
       return { totalCost, totalKm, average: (totalCost / totalKm).toFixed(2) };

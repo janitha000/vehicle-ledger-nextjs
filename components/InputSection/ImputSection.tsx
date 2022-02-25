@@ -6,7 +6,6 @@ import VCalendar from "../common/calendar/VCalender";
 import styles from "./InputSection.module.css";
 import { VechicleDispatchContext, VechicleStateContext } from "../../context/VehicleContext";
 import { VehicleData } from "../../models/VehicleData";
-import { API_URL } from "../../util/constants";
 import useInput from "../../hooks/UseInput";
 import { Vehicle } from "../../models/Vehicle";
 import { mutate } from "swr";

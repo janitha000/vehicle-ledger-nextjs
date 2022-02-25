@@ -38,12 +38,16 @@ const GetVehicleData = async (id: string, month: string, year: string) => {
     let inputMonth = parseInt(month as string);
     let calculatedMonth = (inputMonth < 10) ? `0${inputMonth + 1}` : `${inputMonth + 1}`
 
+    let normalMonths = ["04", "06", "09", "11"]
+    let greatMonths = ["01", "03", "05", "07", "08", "10", "12"]
+
     const startDate = new Date(`${year}-${calculatedMonth}-01`);
-    const endtDate = new Date(`${year}-${calculatedMonth}-31`);
+    const endtDate = (normalMonths.includes(calculatedMonth)) ? new Date(`${year}-${calculatedMonth}-30Z23:23:23`)
+        : ((greatMonths.includes(calculatedMonth)) ? new Date(`${year}-${calculatedMonth}-31Z23:23:23`) : new Date(`${year}-${calculatedMonth}-28Z23:23:23`));
 
     const vechicleDataList = await db.collection(`/vehicles/${id}/vehicledata`)
         .where('date', '>', startDate)
-        .where('date', '<', endtDate)
+        .where('date', '<=', endtDate)
         .orderBy('date', 'desc')
         .orderBy('od_meter', 'desc').get();
 

@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
         else if (req.method === "DELETE") {
             const { id } = req.query;
-            const doc = await db.collection('vehicles').doc(id as string).get();
+            await db.collection('vehicles').doc(id as string).delete();
             res.status(200).end();
         }
 

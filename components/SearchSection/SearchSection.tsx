@@ -5,7 +5,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { API_URL } from "../../util/constants";
 import { VechicleDispatchContext } from "../../context/VehicleContext";
 import fetcher from "../../util/fetcher";
 import  styles from "./SearchSection.module.css";
