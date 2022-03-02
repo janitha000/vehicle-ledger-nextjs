@@ -6,4 +6,7 @@ module.exports = withPWA({
     register: true,
     skipWaiting: true,
   },
+  images: {
+    domains: ['tailwindui,com'],
+  },
 });

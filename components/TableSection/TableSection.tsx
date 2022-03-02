@@ -1,21 +1,31 @@
 import id from "date-fns/locale/id";
 import * as React from "react";
 import useSWR, { mutate } from "swr";
-import { VechicleDispatchContext, VechicleStateContext } from "../../context/VehicleContext";
+import {
+  VechicleDispatchContext,
+  VechicleStateContext,
+} from "../../context/VehicleContext";
 import { VehicleData } from "../../models/VehicleData";
 import fetcher from "../../util/fetcher";
 import VehicleTable from "../common/table/VehicleTable";
+import TTable from "../common/TTable/TTable";
 
 const TableSection = () => {
-  const { state: { inputYear, inputMonth, selectedVehicle, recallApi } } = React.useContext(VechicleStateContext);
-  const {dispatch} = React.useContext(VechicleDispatchContext)
-  const {data, error} = useSWR<VehicleData[]>(`api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata?month=${inputMonth}&year=${inputYear}`, fetcher);
+  const {
+    state: { inputYear, inputMonth, selectedVehicle, recallApi },
+  } = React.useContext(VechicleStateContext);
+  const { dispatch } = React.useContext(VechicleDispatchContext);
+  const { data, error } = useSWR<VehicleData[]>(
+    `api/vehicles/${
+      (selectedVehicle as VehicleData).id
+    }/vehicledata?month=${inputMonth}&year=${inputYear}`,
+    fetcher
+  );
 
   React.useEffect(() => {
     dispatch({ type: "setVehicleItems", payload: data });
-    console.log('dispatch vehicles')
+    console.log("dispatch vehicles");
   }, [data]);
-
 
   const createHeader = (value: string, key: number) => {
     return { key, value };
@@ -30,12 +40,24 @@ const TableSection = () => {
     createHeader("Actions", 6),
   ];
 
-  const deleteItem = React.useCallback(async (item) => {
-    console.log(item);
-    await fetch(`api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata/${item.id}?month=${inputMonth}&year=${inputYear}`, { method: 'DELETE' });
-    mutate(`api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata?month=${inputMonth}&year=${inputYear}`, )
-    dispatch({ type: "deleteVehicleData", payload: item.id });
-  }, [selectedVehicle, inputMonth, inputYear]);
+  const deleteItem = React.useCallback(
+    async (item) => {
+      console.log(item);
+      await fetch(
+        `api/vehicles/${(selectedVehicle as VehicleData).id}/vehicledata/${
+          item.id
+        }?month=${inputMonth}&year=${inputYear}`,
+        { method: "DELETE" }
+      );
+      mutate(
+        `api/vehicles/${
+          (selectedVehicle as VehicleData).id
+        }/vehicledata?month=${inputMonth}&year=${inputYear}`
+      );
+      dispatch({ type: "deleteVehicleData", payload: item.id });
+    },
+    [selectedVehicle, inputMonth, inputYear]
+  );
 
   return (
     <div>
@@ -46,6 +68,8 @@ const TableSection = () => {
           deleteItemClick={deleteItem}
         />
       )}
+
+      <TTable />
     </div>
   );
 };
