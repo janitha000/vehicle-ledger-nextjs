@@ -68,8 +68,6 @@ const TableSection = () => {
           deleteItemClick={deleteItem}
         />
       )}
-
-      <TTable />
     </div>
   );
 };
