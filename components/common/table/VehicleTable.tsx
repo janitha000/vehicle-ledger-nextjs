@@ -8,19 +8,24 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { VehicleData } from "../../../models/VehicleData";
+import ConfirmationPopUp from "../confirmation/ConfirmationPopUp";
 
 interface Props {
-    tableHeaders: TableHeader[];
-    tableRows: VehicleData[];
-    deleteItemClick: (item: VehicleData) => void;
+  tableHeaders: TableHeader[];
+  tableRows: VehicleData[];
+  deleteItemClick: (item: VehicleData) => void;
 }
 
 export interface TableHeader {
-    key: number;
-    value: string;
+  key: number;
+  value: string;
 }
 
-const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemClick }) => {
+const VehicleTable: React.FC<Props> = ({
+  tableHeaders,
+  tableRows,
+  deleteItemClick,
+}) => {
   const onDeleteClick = (id: string) => {
     const item = tableRows.filter((x) => x.id === id);
     deleteItemClick(item[0]);
@@ -29,10 +34,7 @@ const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemCli
   return (
     <>
       <TableContainer component={Paper}>
-        <Table
-          
-          aria-label="simple table"
-        >
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               {tableHeaders &&
@@ -58,12 +60,18 @@ const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemCli
                   <TableCell align="right">{row.od_meter}</TableCell>
                   <TableCell align="right">{row.usage}</TableCell>
                   <TableCell align="right">
-                    <Button
+                    <ConfirmationPopUp
+                      mainVal="Delete"
+                      secondaryVal="Are you sure you want to delete this item?"
+                      headerVal="Delete Item"
+                      handleAgree={() => onDeleteClick(row.id)}
+                    />
+                    {/* <Button
                       onClick={() => onDeleteClick(row.id)}
                       color="secondary"
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </TableCell>
                 </TableRow>
               ))}
@@ -72,7 +80,6 @@ const VehicleTable : React.FC<Props> = ({ tableHeaders, tableRows, deleteItemCli
       </TableContainer>
     </>
   );
-}
+};
 
-
-export default React.memo(VehicleTable)
+export default React.memo(VehicleTable);
