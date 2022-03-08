@@ -10,7 +10,7 @@ export interface PopUpProps {
   mainVal: string;
   secondaryVal: string;
   headerVal: string;
-  handleAgree: (id: string) => void;
+  handleAgree: () => void;
 }
 
 const ConfirmationPopUp: React.FC<PopUpProps> = ({
