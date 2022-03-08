@@ -48,7 +48,7 @@ const ConfirmationPopUp: React.FC<PopUpProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleAgree} autoFocus>
+          <Button onClick={() => handleAgree()} autoFocus>
             Agree
           </Button>
         </DialogActions>
