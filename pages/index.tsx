@@ -6,6 +6,7 @@ import Footer from "../components/common/footer/footer";
 import InputSection from "../components/InputSection/ImputSection";
 import MonthInput from "../components/MonthInput/MonthInput";
 import SearchSection from "../components/SearchSection/SearchSection";
+import DashboardTable from "../components/TableSection/DashboardTable";
 import TableSection from "../components/TableSection/TableSection";
 import { VechicleDispatchContext } from "../context/VehicleContext";
 import Layout from "../layout/Layout";
@@ -48,7 +49,8 @@ const Home: NextPage<Props> = ({ defaultVehicle }) => {
         <MonthInput />
       </div> */}
             <div className={styles.table}>
-              <TableSection />
+              {/* <TableSection /> */}
+              <DashboardTable />
             </div>
           </main>
 

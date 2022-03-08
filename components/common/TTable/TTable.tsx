@@ -1,3 +1,5 @@
+import VehicleTableData from "../table/VehicleTableData";
+
 const people = [
   {
     name: "Jane Cooper",
@@ -12,15 +14,28 @@ const people = [
 ];
 
 interface TTableProps {
-  Headers: TTableHeaders[];
+  headers: TTableHeaders[];
+  rows?: TTableRows[];
 }
 
 export interface TTableHeaders {
+  key: number;
   value: string;
   isAction: boolean;
 }
 
-export default function TTable({ Headers }: TTableProps) {
+export interface TTableRows {
+  key: string;
+  tableData: TableData[];
+}
+
+export interface TableData {
+  value?: string;
+  func?: () => void;
+  isAction: boolean;
+}
+
+export default function TTable({ headers, rows }: TTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -29,8 +44,8 @@ export default function TTable({ Headers }: TTableProps) {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  {Headers &&
-                    Headers.map((header) =>
+                  {headers &&
+                    headers.map((header) =>
                       header.isAction ? (
                         <th scope="col" className="relative px-6 py-3">
                           <span className="sr-only">{header.value}</span>
@@ -47,9 +62,19 @@ export default function TTable({ Headers }: TTableProps) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.map((person) => (
-                  <tr key={person.email}>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                {rows &&
+                  rows.map((row) => (
+                    <tr key={row.key}>
+                      {row.tableData &&
+                        row.tableData.map((data: TableData) =>
+                          data.isAction ? (
+                            <></>
+                          ) : (
+                            <VehicleTableData value={data.value!} />
+                          )
+                        )}
+
+                      {/* <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
                           <img
@@ -91,9 +116,9 @@ export default function TTable({ Headers }: TTableProps) {
                       >
                         Edit
                       </a>
-                    </td>
-                  </tr>
-                ))}
+                    </td> */}
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
